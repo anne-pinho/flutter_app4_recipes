@@ -38,7 +38,7 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
         );
       }
 
-      if (viewModel.errorMessage! != '') {
+      if (viewModel.errorMessage.isNotEmpty) {
         return Center(
           child: Container(
             padding: EdgeInsets.all(32),
@@ -61,7 +61,11 @@ class _RecipeDetailViewState extends State<RecipeDetailView> {
         );
       }
 
-      final recipe = viewModel.recipe!;
+      final recipe = viewModel.recipe;
+      if (recipe == null) {
+        return Center(child: Text('Receita não encontrada.'));
+      }
+
       return SingleChildScrollView(
         child: Column(
           children: [
