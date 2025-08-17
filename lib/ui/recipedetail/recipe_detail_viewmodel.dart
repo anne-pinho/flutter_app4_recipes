@@ -15,7 +15,7 @@ class RecipeDetailViewModel extends GetxController {
   // Getters
   Recipe? get recipe => _recipe.value;
   bool get isLoading => _isLoading.value;
-  String? get errorMessage => _errorMessage.value;
+  String get errorMessage => _errorMessage.value;
   bool get isFavorite => _isLoading.value;
 
   Future<void> loadRecipe(String id) async {
