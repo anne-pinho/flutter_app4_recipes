@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class UserProfile {
   final String id;
   final String email;
@@ -18,7 +16,7 @@ class UserProfile {
       id: json['id'] as String,
       email: json['email'] as String,
       username: json['username'] as String,
-      avatarUrl: json['avatarUrl'] as String,
+      avatarUrl: json['avatar_url'] as String,
     );
   }
 
@@ -30,7 +28,7 @@ class UserProfile {
       id: userData['id'] ?? '',
       email: userData['email'] ?? '',
       username: profileData['username'] ?? '',
-      avatarUrl: profileData['avatarUrl'] ?? '',
+      avatarUrl: profileData['avatar_url'] ?? '',
     );
   }
 

@@ -95,6 +95,7 @@ class AuthViewModel extends GetxController {
     response.fold(
       (left) {
         _errorMessage.value = left.message;
+        print(errorMessage);
       },
       (right) {
         print(right);
