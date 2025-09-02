@@ -16,25 +16,25 @@ class _AuthViewState extends State<AuthView>
   final viewModel = getIt<AuthViewModel>();
 
   late AnimationController _animationController;
-  late Animation<double> _animation;
+  // late Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
-    _animationController =
-        AnimationController(
-          vsync: this,
-          duration: const Duration(milliseconds: 1000),
-        )..addStatusListener((listener) {
-          if (listener == AnimationStatus.completed) {
-            _animationController.reverse();
-          } else if (listener == AnimationStatus.dismissed) {
-            _animationController.forward();
-          }
-        });
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1000),
+      //     )..addStatusListener((listener) {
+      //       if (listener == AnimationStatus.completed) {
+      //         _animationController.reverse();
+      //       } else if (listener == AnimationStatus.dismissed) {
+      //         _animationController.forward();
+      //       }
+      //     }
+    );
 
-    _animation = Tween(begin: 50.0, end: 200.0).animate(_animationController);
-    _animation.addListener(() => setState(() {}));
+    // _animation = Tween(begin: 50.0, end: 200.0).animate(_animationController);
+    // _animation.addListener(() => setState(() {}));
 
     _animationController.forward();
   }
@@ -146,6 +146,7 @@ class _AuthViewState extends State<AuthView>
 
   Widget _buildEmailField() {
     return TextFormField(
+      key: ValueKey('emailField'),
       controller: viewModel.emailController,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
@@ -162,6 +163,7 @@ class _AuthViewState extends State<AuthView>
   Widget _buildPasswordField() {
     return Obx(
       () => TextFormField(
+        key: ValueKey('passwordField'),
         controller: viewModel.passwordController,
         obscureText: viewModel.obscurePassword,
         textInputAction: TextInputAction.done,
@@ -186,6 +188,7 @@ class _AuthViewState extends State<AuthView>
 
   Widget _buildConfirmPasswordField() {
     return TextFormField(
+      key: ValueKey('confirmPasswordField'),
       controller: viewModel.confirmPasswordController,
       obscureText: viewModel.obscurePassword,
       textInputAction: TextInputAction.done,
@@ -209,6 +212,7 @@ class _AuthViewState extends State<AuthView>
 
   Widget _buildUsernameField() {
     return TextFormField(
+      key: ValueKey('usernameField'),
       controller: viewModel.usernameController,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
@@ -223,6 +227,7 @@ class _AuthViewState extends State<AuthView>
 
   Widget _buildAvatarUrlField() {
     return TextFormField(
+      key: ValueKey('avatarUrlField'),
       controller: viewModel.avatarUrlController,
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
@@ -255,6 +260,7 @@ class _AuthViewState extends State<AuthView>
     return SizedBox(
       height: 50,
       child: ElevatedButton(
+        key: ValueKey('submitButton'),
         onPressed: viewModel.submit,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -288,6 +294,7 @@ class _AuthViewState extends State<AuthView>
           viewModel.isLoginMode ? 'Não tem uma conta? ' : 'Já tem uma conta? ',
         ),
         TextButton(
+          key: ValueKey('toggleButton'),
           onPressed: viewModel.isSubmitting ? null : viewModel.toggleMode,
           child: Text(
             viewModel.isLoginMode ? 'Cadastre-se' : 'Entre aqui',
